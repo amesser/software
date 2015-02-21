@@ -1,0 +1,4 @@
+.settings
+firmware/build
+firmware/.lock-waf_*
+3rdparty/*/*

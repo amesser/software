@@ -1,0 +1,19 @@
+#! /usr/bin/env python
+# encoding: utf-8
+def configure(conf):
+  conf.ecpp_setupbuild(id='fb-analyzer', board='nxsb100', platform='netx')
+
+def build(bld):
+    bld.ecpp_build(
+        id           = 'fb-analyzer',
+        target       = 'fb-analyzer.elf',
+        source       = 'main.cpp',
+        includes     = ["."],
+        features     = 'cxx cxxprogram',
+        use          = [
+            'xc_can_netx100_netx500',
+            'xc_eth_std_mac_netx100_netx500',
+            'ecpp_netx500',
+        ],
+        uselib       = ['c', 'gcc'],
+    )

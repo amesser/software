@@ -1,0 +1,62 @@
+#! /usr/bin/env python
+# encoding: utf-8
+def configure(conf):
+    conf.ecpp_setupbuild(id='xc_netx100_netx500', device='netx100', platform='netx')
+
+def build(bld):
+    bld.ecpp_build(
+        id           = 'xc_netx100_netx500',
+        target       = 'xc_can_netx100_netx500',
+        source       = [
+            "common_netx100_netx500/common_func_netx500.c",
+            "xc_can_netx100_netx500/hal_can.c",
+            "xc_can_netx100_netx500/rpu_can0.c",
+            "xc_can_netx100_netx500/rpu_can1.c",
+            "xc_can_netx100_netx500/rpu_can2.c",
+            "xc_can_netx100_netx500/rpu_can3.c",
+            "xc_can_netx100_netx500/tpu_can0.c",
+            "xc_can_netx100_netx500/tpu_can1.c",
+            "xc_can_netx100_netx500/tpu_can2.c",
+            "xc_can_netx100_netx500/tpu_can3.c",
+            "xc_can_netx100_netx500/xpec_can0.c",
+            "xc_can_netx100_netx500/xpec_can1.c",
+            "xc_can_netx100_netx500/xpec_can2.c",
+            "xc_can_netx100_netx500/xpec_can3.c",
+        ],
+        includes     = [
+            "xc_can_netx100_netx500",
+            "common_netx100_netx500",
+        ],
+        export_includes = [bld.path.find_node("xc_can_netx100_netx500")],
+        features     = 'cxx cxxstlib',
+    )
+
+    bld.ecpp_build(
+        id           = 'xc_netx100_netx500',
+        target       = 'xc_eth_std_mac_netx100_netx500',
+        source       = [
+            "common_netx100_netx500/common_func_netx500.c",
+            "xc_eth_std_mac_netx100_netx500/hal_eth_std_mac.c",
+            "xc_eth_std_mac_netx100_netx500/rpu_eth0.c",
+            "xc_eth_std_mac_netx100_netx500/rpu_eth1.c",
+            "xc_eth_std_mac_netx100_netx500/rpu_eth2.c",
+            "xc_eth_std_mac_netx100_netx500/rpu_eth3.c",
+            "xc_eth_std_mac_netx100_netx500/tpu_eth0.c",
+            "xc_eth_std_mac_netx100_netx500/tpu_eth1.c",
+            "xc_eth_std_mac_netx100_netx500/tpu_eth2.c",
+            "xc_eth_std_mac_netx100_netx500/tpu_eth3.c",
+            "xc_eth_std_mac_netx100_netx500/xpec_eth_std_mac0.c",
+            "xc_eth_std_mac_netx100_netx500/xpec_eth_std_mac1.c",
+            "xc_eth_std_mac_netx100_netx500/xpec_eth_std_mac2.c",
+            "xc_eth_std_mac_netx100_netx500/xpec_eth_std_mac3.c",
+        ],
+        includes     = [
+            "xc_eth_std_mac_netx100_netx500",
+            "common_netx100_netx500",
+        ],
+        export_includes = [
+            bld.path.find_node("xc_eth_std_mac_netx100_netx500"),
+            bld.path.find_node("common_netx100_netx500"),
+        ],
+        features     = 'cxx cxxstlib',
+    )
